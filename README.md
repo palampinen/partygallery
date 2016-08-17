@@ -8,8 +8,14 @@ Simple Web app to help understand React and Redux before jumping into *React Nat
 
 
 ## Install
-`npm install`
-`npm start`
+```
+https://github.com/palampinen/be4rn
+cd be4rn
+
+npm install
+npm start
+```
+Open in browser `localhost:3000
 
 ## Includes
 * React
