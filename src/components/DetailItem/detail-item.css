@@ -21,11 +21,9 @@
 }
 
 .detailItem__image img {
+	display: block;
 	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin-left: -45%;
+	margin-left: -50%;
 }
 
 .detailItem__info {
@@ -41,3 +39,18 @@
 	color: #aaa;
 }
 
+.button {
+	display: block;
+	border: 2px solid #59d8b7;
+	color: #59d8b7;
+	text-decoration: none;
+	margin: 30px auto;
+	max-width: 200px;
+	width: 80%;
+	padding: 10px 0;
+	border-radius: 20px;
+}
+
+.button:active {
+	opacity: 0.5;
+}
