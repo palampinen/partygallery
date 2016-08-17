@@ -4,6 +4,15 @@ import './detail-item.css';
 
 
 class DetailItem extends Component {
+
+  renderPhoneLink(telephoneNumber, name) {
+    return (
+      <a className="button" href={`tel:${telephoneNumber}`}>
+        Call to {name.split(' ')[0]}
+      </a>
+    );
+  }
+
   render() {
     const item = this.props.item;
     return (
@@ -15,6 +24,13 @@ class DetailItem extends Component {
           <span className="detailItem__name">{item.get('name')}</span>
           <span className="detailItem__description">{item.get('description')}</span>
         </div>
+        {
+          item.get('telephoneNumber') &&
+          this.renderPhoneLink(
+            item.get('telephoneNumber'),
+            item.get('name')
+          )
+        }
       </div>
     );
   }
