@@ -33,6 +33,7 @@ html, body {
   display: flex;
   height: 100%;
   position: relative;
+  overflow:hidden;
 }
 /* List styles */
 .App-content__scroll {
