@@ -1,0 +1,29 @@
+.tabs {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	align-content: stretch;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.tab {
+	color: rgba(0,0,0,.4);
+	font-weight: bold;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	vertical-align: middle;
+	cursor: pointer;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+
+.tab.active {
+	color: #FFF;
+}
+
+.tab:active {
+	opacity: 0.8;
+}
