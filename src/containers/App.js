@@ -11,18 +11,19 @@ import { selectItem, closeItem, fetchItems, selectTab } from '../actions/app-act
 class App extends Component {
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchData(this.props.currentTab);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentTab !== this.props.currentTab){
+    const tabChanged = nextProps.currentTab !== this.props.currentTab;
+
+    if (tabChanged){
       this.fetchData(nextProps.currentTab)
     }
   }
 
   fetchData(currentTab) {
-    const tabIndex = currentTab || currentTab === 0 ? currentTab : this.props.currentTab
-    const category = TabOptions[tabIndex];
+    const category = TabOptions[currentTab];
     this.props.fetchItems(category);
   }
 
@@ -31,7 +32,7 @@ class App extends Component {
     return (
       <div className="list">
         {this.props.items.map((item, index) => (
-          <ListItem key={item.id} item={item} selectItem={this.props.selectItem} />
+          <ListItem key={index} item={item} selectItem={this.props.selectItem} />
         ))}
       </div>
     );
