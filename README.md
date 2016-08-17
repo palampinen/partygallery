@@ -6,7 +6,6 @@ Created with [create-react-app](https://github.com/facebookincubator/create-reac
 
 Simple Web app to help understand React and Redux before jumping into *React Native*.
 
-
 ## Install
 ```
 https://github.com/palampinen/be4rn
@@ -22,3 +21,6 @@ Open in browser `localhost:3000
 * Redux
 * ImmutableJS
 
+## Demo
+
+[Check out the demo](https://palampinen.github.io/be4rn)!
