@@ -16,11 +16,14 @@ npm start
 ```
 Open in browser `localhost:3000`
 
+[Install Redux Devtools extension](https://github.com/zalmoxisus/redux-devtools-extension)
+
 ## Includes
 * React
 * Redux
 * ImmutableJS
 * Flexbox style examples
+* Redux Devtools extension
 
 ## Demo
 
