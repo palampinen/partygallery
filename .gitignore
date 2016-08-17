@@ -9,4 +9,5 @@ build
 # misc
 .DS_Store
 npm-debug.log
-.sublime-project
+*.sublime-workspace
+*.sublime-project
