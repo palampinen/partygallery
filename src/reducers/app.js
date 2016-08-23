@@ -27,7 +27,7 @@ export default function app(state = initialState, action) {
       return state.set('chosenItem', Immutable.fromJS(action.payload));
     case SELECT_TAB:
       return state.merge({
-        currentTab: Immutable.fromJS(action.payload),
+        currentTab: action.payload,
         chosenItem: null,
         items: Immutable.fromJS([])
       });

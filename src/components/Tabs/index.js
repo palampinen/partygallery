@@ -12,7 +12,7 @@ class Tabs extends Component {
           return (
             <div
               key={index}
-              onClick={() => this.props.selectTab(index)}
+              onClick={() => !isActive ? this.props.selectTab(index) : false}
               className={`tab${isActive ? ' active' : ''}`}
             >
               {tab}

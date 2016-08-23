@@ -14,14 +14,16 @@
 	height: 50px;
 	line-height: 50px;
 	vertical-align: middle;
-	cursor: pointer;
 	text-transform: uppercase;
+}
+
+.tab:hover {
 	cursor: pointer;
 }
 
-
 .tab.active {
 	color: #FFF;
+	cursor: default;
 }
 
 .tab:active {
