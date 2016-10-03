@@ -73,19 +73,17 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (store) => (
-  {
-    items: store.get('items'),
-    chosenItem: store.get('chosenItem'),
-    currentTab: store.get('currentTab')
-  }
-);
+const mapStateToProps = (store) => ({
+  items: store.get('items'),
+  chosenItem: store.get('chosenItem'),
+  currentTab: store.get('currentTab')
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchItems: category => dispatch(fetchItems(category)),
-  selectItem: item => dispatch(selectItem(item)),
-  closeItem: () => dispatch(closeItem()),
-  selectTab: tab => dispatch(selectTab(tab))
+const mapDispatchToProps = ({
+  fetchItems,
+  selectItem,
+  closeItem,
+  selectTab
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
