@@ -43,20 +43,23 @@ class App extends Component {
   }
 
   render() {
+
+    const { currentTab, selectTab, chosenItem } = this.props;
+
     return (
       <div className="App">
         <div className="App-header">
           <Header
             isInDetailView={this.props.chosenItem}
             closeItem={this.props.closeItem}
-            title={`Introduction to ${TabOptions[this.props.currentTab] || 'React'}`}
+            title={`Introduction to ${TabOptions[currentTab] || 'React'}`}
           />
         </div>
         <div className="App-content">
           <div className="App-content__scroll">
             {
-              this.props.chosenItem ?
-                this.renderItem(this.props.chosenItem) :
+              chosenItem ?
+                this.renderItem(chosenItem) :
                 this.renderList()
             }
           </div>
@@ -64,8 +67,8 @@ class App extends Component {
         <div className="App-footer">
           <Tabs
             tabs={TabOptions}
-            selectTab={this.props.selectTab}
-            currentTab={this.props.currentTab}
+            selectTab={selectTab}
+            currentTab={currentTab}
           />
         </div>
       </div>
