@@ -4,14 +4,18 @@ import './header.css';
 
 class Header extends Component {
 
-  renderBackButton() {
-    return (<a className="back-button" onClick={this.props.closeItem}>&times;</a>);
+  renderButtons() {
+    return (
+      <div className="header-buttons">
+        <a className="back-button ion-android-close" onClick={this.props.closeItem}></a>
+      </div>
+    );
   }
 
   render() {
     return (
       <div className="header">
-        {this.props.isInDetailView && this.renderBackButton() }
+        {!!this.props.chosenItem && this.renderButtons() }
         <h2 className="header__title">
           {this.props.title}
         </h2>

@@ -5,10 +5,10 @@ import './detail-item.css';
 
 class DetailItem extends Component {
 
-  renderPhoneLink(telephoneNumber, name) {
+  renderPhoneLink(url) {
     return (
-      <a className="button" href={`tel:${telephoneNumber}`}>
-        Call to {name.split(' ')[0]}
+      <a className="button" href={`${url}`}>
+        Share image
       </a>
     );
   }
@@ -16,21 +16,17 @@ class DetailItem extends Component {
   render() {
     const item = this.props.item;
     return (
-      <div className="detailItem">
-        <div className="detailItem__image">
-          <img src={item.get('img')} alt={item.get('name')} />
+      <div className="detailWrap">
+        <div className="detailOverlay" onClick={this.props.closeItem}/>
+        <div className="detailItem">
+          <div className="detailItem__image">
+            <img src={item.get('url')} alt="" />
+          </div>
+          <div className="detailItem__info">
+            <span className="detailItem__name">{item.getIn(['author','name'])}</span>
+            <span className="detailItem__description">{item.getIn(['author','team'])}</span>
+          </div>
         </div>
-        <div className="detailItem__info">
-          <span className="detailItem__name">{item.get('name')}</span>
-          <span className="detailItem__description">{item.get('description')}</span>
-        </div>
-        {
-          item.get('telephoneNumber') &&
-          this.renderPhoneLink(
-            item.get('telephoneNumber'),
-            item.get('name')
-          )
-        }
       </div>
     );
   }

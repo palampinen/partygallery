@@ -1,30 +1,25 @@
-# Be4rn - Simple React app with Redux
+# React Image Gallery
 
-![Be4rn](https://raw.githubusercontent.com/palampinen/Be4rn/master/be4rn.gif)
+![Partygallery](https://raw.githubusercontent.com/palampinen/partygallery/master/gallery.png)
 
-Simple Web app to help understand React and Redux before jumping into *React Native*.
+
+Simple gallery for showing photos from feed API. Originally done for Futubileet16 mobile app to help browsing User-Generated content.
 
 Created with [create-react-app](https://github.com/facebookincubator/create-react-app/).
 
 ## Install
 ```
-git clone https://github.com/palampinen/be4rn
-cd be4rn
+git clone https://github.com/palampinen/partygallery
+cd partygallery
 
 npm install
 npm start
 ```
+
+`cp env.example.js env.js` and fill empty fields in *env.js* file.
+
 Open in browser `localhost:3000`
 
-[Install Redux Devtools extension](https://github.com/zalmoxisus/redux-devtools-extension)
+Licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
-## Includes
-* React
-* Redux
-* ImmutableJS
-* Flexbox style examples
-* Redux Devtools extension
-
-## Demo
-
-[Check out the demo](https://palampinen.github.io/be4rn)!
+Sponsored by [Futurice](http://futurice.com)'s [Spice Program](http://spiceprogram.org/oss-sponsorship/).

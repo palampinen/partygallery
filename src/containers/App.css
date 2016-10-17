@@ -3,7 +3,8 @@ html, body {
   overflow:hidden;
   margin: 0;
   padding: 0;
-  user-select: none; /* mobile UX */
+  font-size: 16px;
+  background: #fafafa;
 }
 
 /* App container styles */
@@ -33,7 +34,8 @@ html, body {
   display: flex;
   height: 100%;
   position: relative;
-  overflow:hidden;
+  overflow: hidden;
+  text-align: center;
 }
 /* List styles */
 .App-content__scroll {
@@ -44,9 +46,30 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Tabs styles */
-.App-footer {
-  background: #59d8b7;
-  height: 50px;
-  text-align: center;
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 840px;
+  padding: 15px;
+  margin: 0 auto;
 }
+
+
+.btn {
+  background: #FFF;
+  color: #FF5240;
+  border: 2px solid #FF5240;
+  padding: 10px 45px;
+  min-width: 200px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.3em;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn.inactive {
+  border-color:#738998;
+  color:#738998;
+}
+

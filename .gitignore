@@ -5,9 +5,11 @@ node_modules
 
 # production
 build
+heroku
 
 # misc
 .DS_Store
 npm-debug.log
 *.sublime-workspace
 *.sublime-project
+env.js

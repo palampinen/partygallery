@@ -1,37 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fromJS } from 'immutable'
 import './App.css';
 import Header from '../components/Header';
 import ListItem from '../components/ListItem';
-import Tabs from '../components/Tabs';
 import DetailItem from '../components/DetailItem';
-import TabOptions from '../constants/tabs';
-import { selectItem, closeItem, fetchItems, selectTab } from '../actions/app-actions';
+import ShareButton from '../components/ShareButton';
+import { selectItem, closeItem, fetchItems, loadMoreItems } from '../actions/app-actions';
 
 class App extends Component {
 
   componentDidMount() {
-    this.fetchData(this.props.currentTab);
+    this.fetchData();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const tabChanged = nextProps.currentTab !== this.props.currentTab;
-
-    if (tabChanged){
-      this.fetchData(nextProps.currentTab)
-    }
+  fetchData() {
+    this.props.fetchItems();
   }
 
-  fetchData(currentTab) {
-    const category = TabOptions[currentTab];
-    this.props.fetchItems(category);
-  }
-
-  // TODO component from this
-  renderList() {
+  renderList(items) {
     return (
-      <div className="list">
-        {this.props.items.map((item, index) => (
+      <div className="gallery">
+        {items.map((item, index) => (
           <ListItem key={index} item={item} selectItem={this.props.selectItem} />
         ))}
       </div>
@@ -42,51 +32,57 @@ class App extends Component {
     return (<DetailItem item={item} closeItem={this.props.closeItem} />);
   }
 
+
+  renderLoadMoreButton(id, loading) {
+    return (
+    <button
+      className={`btn ${loading ? 'inactive' : ''}`}
+      onClick={() =>  !loading && this.props.loadMoreItems(id) }
+    >
+      {loading ? 'Loading...' : 'Load More'}
+    </button>);
+  }
+
   render() {
 
-    const { currentTab, selectTab, chosenItem } = this.props;
+    const { items, chosenItem, showLoadMore, lastItemId, loading } = this.props;
 
     return (
       <div className="App">
         <div className="App-header">
           <Header
-            isInDetailView={this.props.chosenItem}
+            chosenItem={this.props.chosenItem}
             closeItem={this.props.closeItem}
-            title={`Introduction to ${TabOptions[currentTab] || 'React'}`}
+            title={`Gallery`}
           />
         </div>
         <div className="App-content">
+          { chosenItem && <ShareButton item={chosenItem} />}
+          { chosenItem && this.renderItem(chosenItem) }
           <div className="App-content__scroll">
-            {
-              chosenItem ?
-                this.renderItem(chosenItem) :
-                this.renderList()
-            }
+            { this.renderList(items) }
+            { items && !!items.size && showLoadMore && this.renderLoadMoreButton(lastItemId, loading)}
           </div>
         </div>
-        <div className="App-footer">
-          <Tabs
-            tabs={TabOptions}
-            selectTab={selectTab}
-            currentTab={currentTab}
-          />
-        </div>
+
       </div>
     );
   }
 }
 
 const mapStateToProps = (store) => ({
-  items: store.get('items'),
+  items: store.get('items', fromJS([])),
   chosenItem: store.get('chosenItem'),
-  currentTab: store.get('currentTab')
+  showLoadMore: store.get('showLoadMore'),
+  lastItemId: store.get('lastItemId'),
+  loading: store.get('loading')
 });
 
 const mapDispatchToProps = ({
   fetchItems,
   selectItem,
-  closeItem,
-  selectTab
+  loadMoreItems,
+  closeItem
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
