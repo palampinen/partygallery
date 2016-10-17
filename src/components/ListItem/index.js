@@ -13,10 +13,8 @@ class ListItem extends Component {
 
 
     const item = this.props.item;
-    const imgNo = (moment(item.get('createdAt')).valueOf() % 6) + 1;
-    const imageUrl =  'http://lorempixel.com/600/600/nightlife/' + imgNo // item.get('url');
+    const imageUrl =  item.get('url');
 
-    //  http://lorempixel.com/600/600/nightlife/2/
     return (
       <div className="listItem" onClick={() => this.props.selectItem(item)}>
         <div className="listItem__image">
