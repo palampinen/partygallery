@@ -3,7 +3,7 @@
 ![Partygallery](https://raw.githubusercontent.com/palampinen/partygallery/master/gallery.png)
 
 
-Simple gallery for showing photos from feed API. Originally done for Futubileet16 mobile app to help browsing User-Generated content.
+Simple gallery for showing photos from feed API. Originally done for Futubileet16 mobile app to help browsing User-Generated Content.
 
 Created with [create-react-app](https://github.com/facebookincubator/create-react-app/).
 
@@ -16,7 +16,7 @@ npm install
 npm start
 ```
 
-`cp env.example.js env.js` and fill empty fields in *env.js* file.
+`cp src/env.example.js src/env.js` and fill empty fields in *env.js* file.
 
 Open in browser `localhost:3000`
 
