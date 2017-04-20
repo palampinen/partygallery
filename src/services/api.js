@@ -1,14 +1,11 @@
-
 import Endpoints from '../constants/Endpoints';
 import * as ENV from '../env';
 import 'whatwg-fetch';
 import { isEmpty, isObject } from 'lodash';
 
-
 const VERSION_NUMBER = ENV.VERSION;
 const USER_UUID = ENV.UUID;
 const API_TOKEN = ENV.API_TOKEN;
-
 
 const checkResponseStatus = response => {
   if (response.status >= 200 && response.status < 400) {
@@ -137,37 +134,9 @@ const fetchMoreFeed = (beforeId, params) => {
   return cachedFetch(url);
 };
 
-
-const postAction = (params, location) => {
-  let payload = Object.assign({}, params, { user: USER_UUID });
-
-  // Add location to payload, if it exists
-  if (location) {
-    payload.location = location;
-  }
-
-  return _post(Endpoints.urls.action, payload);
-};
-
-const putUser = payload => {
-  return _put(Endpoints.urls.user(payload.uuid), payload);
-};
-
-const getUser = uuid => {
-  return galleryFetch(Endpoints.urls.user(uuid))
-    .then(checkResponseStatus)
-    .then(response => response.json());
-};
-
-const loginUser = payload => {
-  return _put(Endpoints.urls.login, payload)
-    .then(response => response.json());
-};
-
 const deleteFeedItem = item => {
   return _delete(Endpoints.urls.feedItem(item.id));
 };
-
 
 function isErrorResponse(status) {
   return status && status >= 400;
@@ -179,8 +148,4 @@ export default {
   fetchModels,
   fetchUpdateFeed,
   fetchMoreFeed,
-  postAction,
-  putUser,
-  getUser,
-  loginUser
 };
