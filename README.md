@@ -1,6 +1,6 @@
 # React Image Gallery
 
-![Partygallery](https://raw.githubusercontent.com/palampinen/partygallery/master/gallery.png)
+![Partygallery](https://raw.githubusercontent.com/palampinen/partygallery/Whappu/gallery.png)
 
 
 Simple gallery for showing photos from feed API. Done for Whappu mobile app to help browsing User-Generated Content.
