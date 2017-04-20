@@ -1,0 +1,36 @@
+.city-selector {
+	max-width: 300px;
+	margin: 35px auto 30px;
+	border: 2px solid #ec449c;
+	border-radius: 4px;
+	display: flex;
+	justify-content: stretch;
+	align-items: stretch;
+}
+
+.city-option {
+	padding: 7px 25px;
+	border: none;
+	background: transparent;
+	font-size: 1em;
+	text-transform: normal;
+	color: #ec449c;
+	cursor: pointer;
+	outline: none;
+
+	flex: 1;
+	width: 100%;
+	display: flex;
+	align-self: stretch;
+	justify-content: center;
+	align-items: center;
+}
+
+.city-option__active {
+	background: #ec449c;
+	color: #FFF;
+}
+
+.city-option:not(:last-child){
+	border-right: 2px solid #ec449c;
+}
