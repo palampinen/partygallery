@@ -1,0 +1,30 @@
+@keyframes scale-in {
+	from { transform: scale(0); }
+	to { transform: scale(1); }
+}
+
+
+.sort-selector {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70px;
+}
+
+.sort-option {
+	cursor: pointer;
+	height: 70px;
+	outline: none;
+	width: 70px;
+	text-align: center;
+	font-size: 30px;
+	color: #ec449c;
+	background: transparent;
+	border: none;
+	display: none;
+}
+
+.sort-option--active {
+	display: block;
+	animation: scale-in 0.2s;
+}
