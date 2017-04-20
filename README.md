@@ -3,7 +3,7 @@
 ![Partygallery](https://raw.githubusercontent.com/palampinen/partygallery/master/gallery.png)
 
 
-Simple gallery for showing photos from feed API. Originally done for Futubileet16 mobile app to help browsing User-Generated Content.
+Simple gallery for showing photos from feed API. Done for Whappu mobile app to help browsing User-Generated Content.
 
 Created with [create-react-app](https://github.com/facebookincubator/create-react-app/).
 
