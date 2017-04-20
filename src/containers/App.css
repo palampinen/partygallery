@@ -23,14 +23,14 @@ html, body {
 }
 
 .App-header {
-  height: 50px;
+  height: 70px;
   display: block;
   color: white;
 }
 
 /* Content styles */
 .App-content {
-  background: #fafafa;
+  background: #f8f8f8;
   display: flex;
   height: 100%;
   position: relative;
@@ -43,22 +43,26 @@ html, body {
   position: relative;
   overflow:hidden;
   overflow-y: auto;
+  overflow-y: overlay;
   -webkit-overflow-scrolling: touch;
 }
 
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  max-width: 840px;
-  padding: 15px;
+  max-width: 1120px;
+  padding: 20px 15px;
   margin: 0 auto;
+  justify-content: center;
 }
 
 
 .btn {
-  background: #FFF;
-  color: #FF5240;
-  border: 2px solid #FF5240;
+  background: #ec449c;
+  color: #FFF;
+  /* border: 2px solid #ec449c; */
+  border: none;
+  border-radius: 3px;
   padding: 10px 45px;
   min-width: 200px;
   text-align: center;
@@ -66,10 +70,14 @@ html, body {
   font-size: 1.3em;
   outline: none;
   cursor: pointer;
+  transition: box-shadow 0.1s;
+}
+
+.btn:active, .btn:hover {
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.10), 0 2px 2px 0 rgba(0, 0, 0, 0.15);
 }
 
 .btn.inactive {
-  border-color:#738998;
-  color:#738998;
+  background: #738998;
 }
 
