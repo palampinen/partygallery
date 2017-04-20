@@ -17,6 +17,7 @@ const FETCH_CITY_CONTENT_SUCCESS = 'city/FETCH_CITY_CONTENT_SUCCESS';
 // # Selectors
 export const getCityList = state => state.city.get('list', fromJS([])) || fromJS([]);
 export const getCityId = state => state.city.get('id');
+export const isCityLoading = state => state.city.get('loading');
 
 
 // # Action Creators
@@ -66,10 +67,20 @@ export const fetchCities = () => dispatch => {
 const initialState = fromJS({
   id: getLocalStorageValue(localStorageKeys.CITY),
   list: [],
+  loading: false,
 });
 
 export default function city(state = initialState, action) {
   switch (action.type) {
+    case GET_CITY_LIST_REQUEST: {
+      return state.set('loading', true);
+    }
+
+    case GET_CITY_LIST_SUCCESS:
+    case GET_CITY_LIST_FAILURE: {
+      return state.set('loading', false);
+    }
+
     case SET_CITY_LIST: {
       return state.set('list', fromJS(action.payload));
     }

@@ -3,9 +3,9 @@
 	position: absolute;
 	top: 33.3%;
 	left: 50%;
-	width: 80px;
-	height: 80px;
-	margin: -40px 0 0 -40px;
+	width: 66px;
+	height: 66px;
+	margin: -33px 0 0 -33px;
 
 	fill: #dd4997;
 	stroke: #dd4997;
@@ -13,6 +13,6 @@
 }
 
 .loading svg {
-	width: 80px;
-	height: 80px;
+	width: 66px;
+	height: 66px;
 }

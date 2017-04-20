@@ -65,6 +65,11 @@
   opacity: 0.5;
 }
 
+.city-loader {
+  position: relative;
+  top: 0px;
+}
+
 @media screen and (max-width: 840px) {
   .header__title {
     left: 15px;

@@ -16,7 +16,7 @@ import {
   closeItem,
   loadMoreItems
 } from '../concepts/feed';
-import { getCityList, getCityId, setCity } from '../concepts/city';
+import { isCityLoading, getCityList, getCityId, setCity } from '../concepts/city';
 
 class App extends Component {
 
@@ -53,7 +53,7 @@ class App extends Component {
 
     const {
       items, chosenItem, showLoadMore, lastItemId, loading,
-      cities, cityId, setCity, sortType, sortTypeOptions
+      cities, cityId, cityLoading, setCity, sortType, sortTypeOptions
     } = this.props;
 
     return (
@@ -66,6 +66,7 @@ class App extends Component {
             title={`Whappu`}
             cityId={cityId}
             cities={cities}
+            cityLoading={cityLoading}
             setCity={setCity}
             sortType={sortType}
             sortTypeOptions={sortTypeOptions}
@@ -90,6 +91,7 @@ class App extends Component {
 const mapStateToProps = (store) => ({
   cities: getCityList(store),
   cityId: getCityId(store),
+  cityLoading: isCityLoading(store),
   items: store.feed.get('items', fromJS([])),
   chosenItem: store.feed.get('chosenItem'),
   showLoadMore: store.feed.get('showLoadMore'),

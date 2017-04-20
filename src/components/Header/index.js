@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CitySelector from '../CitySelector';
 import SortSelector from '../SortSelector';
+import Loader from '../Loader';
 
 import './header.css';
 
@@ -23,7 +24,10 @@ class Header extends Component {
   }
 
   render() {
-    const { cityId, cities, setCity, chosenItem, sortTypeOptions, sortType, setSortType } = this.props;
+    const {
+      cityId, cities, cityLoading, setCity, chosenItem,
+      sortTypeOptions, sortType, setSortType
+    } = this.props;
     return (
       <div className="header">
         {!!chosenItem && this.renderButtons() }
@@ -31,7 +35,10 @@ class Header extends Component {
           {this.renderTitle()}
         </h2>
 
-        <CitySelector cityId={cityId} cities={cities} setCityActive={setCity} />
+        {cityLoading
+          ? <div className="city-loader"><Loader /></div>
+          : <CitySelector cityId={cityId} cities={cities} setCityActive={setCity} />
+        }
 
         {!chosenItem &&
           <div className="header-buttons">
