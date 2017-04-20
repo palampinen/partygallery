@@ -66,29 +66,6 @@ const cachedFetch = (url, opts) => {
   });
 }
 
-
-const _post = (url, body) => {
-  return galleryFetch(url, {
-    method: 'post',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  }).then(checkResponseStatus);
-};
-
-const _put = (url, body) => {
-  return galleryFetch(url, {
-    method: 'put',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  }).then(checkResponseStatus);
-};
-
 const _delete = (url, body) => {
   return galleryFetch(url, {
     method: 'delete',
