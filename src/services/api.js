@@ -2,6 +2,7 @@
 import Endpoints from '../constants/Endpoints';
 import * as ENV from '../env';
 import 'whatwg-fetch';
+import { isEmpty, isObject } from 'lodash';
 
 
 const VERSION_NUMBER = ENV.VERSION;
@@ -103,8 +104,15 @@ const _delete = (url, body) => {
 };
 
 
-const fetchModels = modelType => {
-  const url = Endpoints.urls[modelType];
+const fetchModels = (modelType, params) => {
+  let url = Endpoints.urls[modelType];
+
+  if (!isEmpty(params) && isObject(params)) {
+    url += '?' + Object.keys(params).map(k => {
+      return params[k] ? (encodeURIComponent(k) + '=' + encodeURIComponent(params[k])) : ''
+    }).join('&');
+  }
+
   return cachedFetch(url);
 };
 
@@ -118,15 +126,17 @@ const fetchUpdateFeed = afterId => {
   return cachedFetch(url);
 };
 
-const fetchMoreFeed = lastID => {
-  const params = { beforeId: lastID, limit: 100 };
+const fetchMoreFeed = (beforeId, params) => {
+  const extendedParams = Object.assign({ beforeId, limit: 100 }, params);
+
   let url = Endpoints.urls.feed;
-  url += '?' + Object.keys(params).map(k => {
-    return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+  url += '?' + Object.keys(extendedParams).map(k => {
+    return encodeURIComponent(k) + '=' + encodeURIComponent(extendedParams[k]);
   }).join('&');
 
   return cachedFetch(url);
 };
+
 
 const postAction = (params, location) => {
   let payload = Object.assign({}, params, { user: USER_UUID });
