@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { getShareUrl } from '../../services/share';
 import './share-button.css';
 
 class ShareButton extends Component {
@@ -12,10 +13,9 @@ class ShareButton extends Component {
     }
   }
 
-
   render() {
-
     const { item } = this.props;
+    const shareUrl = getShareUrl(item.get('url'));
 
     if (this.state.expandShare) {
       setTimeout(() => {
@@ -37,7 +37,7 @@ class ShareButton extends Component {
           <div className="share-content">
             <span className="share-input">
               <input
-                value={item.get('url')}
+                value={shareUrl}
                 onClick={() => document.getElementById('share').select()}
                 id="share"
                 autoFocus
