@@ -6,16 +6,22 @@ import Header from '../components/Header';
 import ListItem from '../components/ListItem';
 import DetailItem from '../components/DetailItem';
 import ShareButton from '../components/ShareButton';
-import { selectItem, closeItem, fetchItems, loadMoreItems } from '../actions/app-actions';
+import Loader from '../components/Loader';
+import { startApp } from '../concepts/app';
+import {
+  getFeedSortType,
+  getFeedSortTypeOptions,
+  setSortType,
+  selectItem,
+  closeItem,
+  loadMoreItems
+} from '../concepts/feed';
+import { getCityList, getCityId, setCity } from '../concepts/city';
 
 class App extends Component {
 
   componentDidMount() {
-    this.fetchData();
-  }
-
-  fetchData() {
-    this.props.fetchItems();
+    this.props.startApp();
   }
 
   renderList(items) {
@@ -45,22 +51,33 @@ class App extends Component {
 
   render() {
 
-    const { items, chosenItem, showLoadMore, lastItemId, loading } = this.props;
+    const {
+      items, chosenItem, showLoadMore, lastItemId, loading,
+      cities, cityId, setCity, sortType, sortTypeOptions
+    } = this.props;
 
     return (
       <div className="App">
         <div className="App-header">
           <Header
-            chosenItem={this.props.chosenItem}
+            chosenItem={chosenItem}
             closeItem={this.props.closeItem}
-            title={`Gallery`}
+            logo={'https://wappu.futurice.com/assets/whappu-accent.png'}
+            title={`Whappu`}
+            cityId={cityId}
+            cities={cities}
+            setCity={setCity}
+            sortType={sortType}
+            sortTypeOptions={sortTypeOptions}
+            setSortType={this.props.setSortType}
           />
         </div>
         <div className="App-content">
           { chosenItem && <ShareButton item={chosenItem} />}
           { chosenItem && this.renderItem(chosenItem) }
           <div className="App-content__scroll">
-            { this.renderList(items) }
+            { !!items.size && this.renderList(items) }
+            { !!loading && !items.size && <Loader />}
             { items && !!items.size && showLoadMore && this.renderLoadMoreButton(lastItemId, loading)}
           </div>
         </div>
@@ -71,18 +88,24 @@ class App extends Component {
 }
 
 const mapStateToProps = (store) => ({
-  items: store.get('items', fromJS([])),
-  chosenItem: store.get('chosenItem'),
-  showLoadMore: store.get('showLoadMore'),
-  lastItemId: store.get('lastItemId'),
-  loading: store.get('loading')
+  cities: getCityList(store),
+  cityId: getCityId(store),
+  items: store.feed.get('items', fromJS([])),
+  chosenItem: store.feed.get('chosenItem'),
+  showLoadMore: store.feed.get('showLoadMore'),
+  lastItemId: store.feed.get('lastItemId'),
+  loading: store.feed.get('loading'),
+  sortType: getFeedSortType(store),
+  sortTypeOptions: getFeedSortTypeOptions(store)
 });
 
 const mapDispatchToProps = ({
-  fetchItems,
+  startApp,
   selectItem,
   loadMoreItems,
-  closeItem
+  closeItem,
+  setCity,
+  setSortType
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
