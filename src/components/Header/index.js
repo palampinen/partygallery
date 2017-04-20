@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import CitySelector from '../CitySelector';
+import SortSelector from '../SortSelector';
 
 import './header.css';
 
@@ -12,13 +14,33 @@ class Header extends Component {
     );
   }
 
+  renderTitle() {
+    if (this.props.logo) {
+      return <img src={this.props.logo} alt={this.props.title} />
+    }
+
+    return this.props.title;
+  }
+
   render() {
+    const { cityId, cities, setCity, chosenItem, sortTypeOptions, sortType, setSortType } = this.props;
     return (
       <div className="header">
-        {!!this.props.chosenItem && this.renderButtons() }
+        {!!chosenItem && this.renderButtons() }
         <h2 className="header__title">
-          {this.props.title}
+          {this.renderTitle()}
         </h2>
+
+        <CitySelector cityId={cityId} cities={cities} setCityActive={setCity} />
+
+        {!chosenItem &&
+          <div className="header-buttons">
+            <SortSelector
+              sortTypeOptions={sortTypeOptions}
+              sortType={sortType}
+              setSortTypeActive={setSortType} />
+          </div>
+        }
       </div>
     );
   }
