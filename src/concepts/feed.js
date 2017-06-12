@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable'
 import _ from 'lodash';
+import { createSelector } from 'reselect';
 import api from '../services/api';
 import { getCityId } from './city';
 import { localStorageKeys, getLocalStorageValue, setLocalStorageValue } from '../services/localstorage';
@@ -21,6 +22,7 @@ const TOGGLE_URL_VIEW = 'TOGGLE_URL_VIEW';
 
 
 // # Selectors
+export const getFeedItems = state => state.feed.get('items', fromJS([]));
 export const getFeedSortType = state => state.feed.get('sortType');
 export const getFeedSortTypeOptions = state => state.feed.get('sortTypeOptions');
 export const isUrlViewVisible = state => state.feed.get('isUrlViewVisible');
@@ -134,16 +136,13 @@ const initialState = fromJS({
   sortTypeOptions
 });
 
-// Get only images
-const filterImages = items => items.filter(item => item.type === 'IMAGE');
-
 
 export default function feed(state = initialState, action) {
   switch (action.type) {
     case SET_ITEMS: {
       const { payload } = action;
       return state.merge({
-        items: fromJS(filterImages(payload)),
+        items: fromJS(payload),
         lastItemId: payload[payload.length - 1].id
       });
     }
@@ -155,7 +154,7 @@ export default function feed(state = initialState, action) {
       return (payload && payload.length)
         ? state.merge({
           items: fromJS(state.get('items')
-          .concat(fromJS(filterImages(payload)))),
+          .concat(fromJS(payload))),
           lastItemId: payload[payload.length - 1].id
         })
         : state;
