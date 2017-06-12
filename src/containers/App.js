@@ -3,18 +3,14 @@ import { connect } from 'react-redux';
 import { fromJS } from 'immutable'
 import './App.css';
 import Header from '../components/Header';
-import ListItem from '../components/ListItem';
-import DetailItem from '../components/DetailItem';
-import ShareButton from '../components/ShareButton';
-import Loader from '../components/Loader';
+
 import { startApp } from '../concepts/app';
 import {
   getFeedSortType,
   getFeedSortTypeOptions,
   setSortType,
-  selectItem,
-  closeItem,
-  loadMoreItems
+  toggleUrlView,
+  isUrlViewVisible
 } from '../concepts/feed';
 import { isCityLoading, getCityList, getCityId, setCity } from '../concepts/city';
 
@@ -24,36 +20,12 @@ class App extends Component {
     this.props.startApp();
   }
 
-  renderList(items) {
-    return (
-      <div className="gallery">
-        {items.map((item, index) => (
-          <ListItem key={index} item={item} selectItem={this.props.selectItem} />
-        ))}
-      </div>
-    );
-  }
-
-  renderItem(item) {
-    return (<DetailItem item={item} closeItem={this.props.closeItem} />);
-  }
-
-
-  renderLoadMoreButton(id, loading) {
-    return (
-    <button
-      className={`btn ${loading ? 'inactive' : ''}`}
-      onClick={() =>  !loading && this.props.loadMoreItems(id) }
-    >
-      {loading ? 'Loading...' : 'Load More'}
-    </button>);
-  }
-
   render() {
 
     const {
       items, chosenItem, showLoadMore, lastItemId, loading,
-      cities, cityId, cityLoading, setCity, sortType, sortTypeOptions
+      cities, cityId, cityLoading, setCity, sortType, sortTypeOptions, urlViewVisible,
+      children
     } = this.props;
 
     return (
@@ -62,8 +34,8 @@ class App extends Component {
           <Header
             chosenItem={chosenItem}
             closeItem={this.props.closeItem}
-            logo={'https://wappu.futurice.com/assets/whappu-accent.png'}
-            title={`Whappu`}
+            logo={'https://raw.githubusercontent.com/futurice/prahapp-site/master/assets/Futubohemia_logo_blue.png'}
+            title={`Futubohemia`}
             cityId={cityId}
             cities={cities}
             cityLoading={cityLoading}
@@ -71,17 +43,11 @@ class App extends Component {
             sortType={sortType}
             sortTypeOptions={sortTypeOptions}
             setSortType={this.props.setSortType}
+            onUrlViewToggle={this.props.toggleUrlView}
           />
         </div>
-        <div className="App-content">
-          { chosenItem && <ShareButton item={chosenItem} />}
-          { chosenItem && this.renderItem(chosenItem) }
-          <div className="App-content__scroll">
-            { !!items.size && this.renderList(items) }
-            { !!loading && !items.size && <Loader />}
-            { items && !!items.size && showLoadMore && this.renderLoadMoreButton(lastItemId, loading)}
-          </div>
-        </div>
+
+        {children}
 
       </div>
     );
@@ -98,16 +64,15 @@ const mapStateToProps = (store) => ({
   lastItemId: store.feed.get('lastItemId'),
   loading: store.feed.get('loading'),
   sortType: getFeedSortType(store),
-  sortTypeOptions: getFeedSortTypeOptions(store)
+  sortTypeOptions: getFeedSortTypeOptions(store),
+  urlViewVisible: isUrlViewVisible(store)
 });
 
 const mapDispatchToProps = ({
   startApp,
-  selectItem,
-  loadMoreItems,
-  closeItem,
   setCity,
-  setSortType
+  setSortType,
+  toggleUrlView
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
