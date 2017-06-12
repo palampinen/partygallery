@@ -55,11 +55,52 @@ html, body {
   margin: 0 auto;
 }
 
+.chat {
+  /*
+  display: flex;
+  flex-wrap: wrap;
+  */
+  width: 100%;
+  max-width: 660px;
+  padding: 0;
+  margin: 0 auto;
+}
+
+
+.url-list {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 70px;
+  bottom: 0;
+  z-index: 999;
+  display: block;
+  background: rgba(255,255,255,.8);
+  left: 0;
+  right: 0;
+  animation: fade-in 0.2s;
+}
+
+.url-list-area {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  animation: fade-in 0.5s;
+
+  min-height: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 14px rgba(80, 77, 91, 0.12);
+  outline: none;
+}
+
 
 .btn {
-  background: #ec449c;
+  background: #003A6F;
   color: #FFF;
-  /* border: 2px solid #ec449c; */
+  /* border: 2px solid #003A6F; */
   border: none;
   border-radius: 3px;
   padding: 10px 45px;
