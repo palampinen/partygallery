@@ -16,12 +16,25 @@ const APPEND_ITEMS = 'APPEND_ITEMS';
 const REFRESH_FEED_REQUEST = 'REFRESH_FEED_REQUEST';
 const REFRESH_FEED_SUCCESS = 'REFRESH_FEED_SUCCESS';
 const SET_SORT_TYPE = 'SET_SORT_TYPE';
+const TOGGLE_URL_VIEW = 'TOGGLE_URL_VIEW';
 // const SET_FEED = 'SET_FEED';
 
 
 // # Selectors
 export const getFeedSortType = state => state.feed.get('sortType');
 export const getFeedSortTypeOptions = state => state.feed.get('sortTypeOptions');
+export const isUrlViewVisible = state => state.feed.get('isUrlViewVisible');
+
+const getFeedByType = types => createSelector(
+  getFeedItems, feedItems => {
+    if (!types || !types.length){
+      return feedItems;
+    }
+    const typeArray = _.castArray(types);
+
+    return feedItems.filter(item => typeArray.indexOf(item.get('type')) >= 0);
+  });
+export const getFeedImages = getFeedByType('IMAGE');
 
 // # Action Creators
 export const selectItem = item => ({ type: SELECT_ITEM, payload: item });
@@ -97,6 +110,13 @@ export const setSortType = sortType => (dispatch, getState) => {
   ).then(() => dispatch(fetchFeed()));
 };
 
+export const toggleUrlView = () => (dispatch, getState) => {
+  const state = getState();
+  const visible = isUrlViewVisible(state);
+
+  dispatch({ type: TOGGLE_URL_VIEW, payload: !visible })
+}
+
 // # Reducer
 
 const sortTypeOptions = [
@@ -110,6 +130,7 @@ const initialState = fromJS({
   showLoadMore: true,
   lastItemId: '',
   loading: false,
+  isUrlViewVisible: false,
   sortType: getLocalStorageValue(localStorageKeys.FEED_SORT) || sortTypeOptions[0].name,
   sortTypeOptions
 });
@@ -159,6 +180,9 @@ export default function feed(state = initialState, action) {
     case SET_SORT_TYPE:
       setLocalStorageValue(localStorageKeys.FEED_SORT, action.payload);
       return state.set('sortType', action.payload);
+
+    case TOGGLE_URL_VIEW:
+      return state.set('isUrlViewVisible', action.payload);
 
     default:
       return state;

@@ -26,7 +26,7 @@ class Header extends Component {
   render() {
     const {
       cityId, cities, cityLoading, setCity, chosenItem,
-      sortTypeOptions, sortType, setSortType
+      sortTypeOptions, sortType, setSortType, onUrlViewToggle
     } = this.props;
     return (
       <div className="header">
@@ -42,6 +42,7 @@ class Header extends Component {
 
         {!chosenItem &&
           <div className="header-buttons">
+            <a className="ion-images" onClick={onUrlViewToggle}></a>
             <SortSelector
               sortTypeOptions={sortTypeOptions}
               sortType={sortType}
