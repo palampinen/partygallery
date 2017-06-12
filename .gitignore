@@ -6,6 +6,8 @@ node_modules
 # production
 build
 heroku
+prod
+temp
 
 # misc
 .DS_Store
