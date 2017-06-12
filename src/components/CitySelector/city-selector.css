@@ -1,7 +1,7 @@
 .city-selector {
 	max-width: 300px;
 	margin: 35px auto 30px;
-	border: 2px solid #ec449c;
+	border: 2px solid #003A6F;
 	border-radius: 4px;
 	display: flex;
 	justify-content: stretch;
@@ -14,7 +14,7 @@
 	background: transparent;
 	font-size: 1em;
 	text-transform: normal;
-	color: #ec449c;
+	color: #003A6F;
 	cursor: pointer;
 	outline: none;
 
@@ -27,10 +27,10 @@
 }
 
 .city-option__active {
-	background: #ec449c;
+	background: #003A6F;
 	color: #FFF;
 }
 
 .city-option:not(:last-child){
-	border-right: 2px solid #ec449c;
+	border-right: 2px solid #003A6F;
 }

@@ -2,7 +2,7 @@
 .share-button {
   cursor: pointer;
   background: #FFF;
-  color: #ec449c;
+  color: #003A6F;
   width: 52px;
   height: 52px;
   border-radius: 26px;
@@ -65,7 +65,7 @@
   justify-content: center;
 }
 .download {
-  color: #ec449c;
+  color: #003A6F;
   line-height: 52px;
   width: 52px;
   animation: scale-in 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);

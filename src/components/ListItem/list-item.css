@@ -51,10 +51,10 @@
 	top: 0;
 	bottom: 0;
 	right: 0;
-	color: #ddd;
+	color: #003A6F;
 	align-items: center;
 	justify-content: center;
-	background: rgba(0,0,0,.5);
+	background: rgba(253, 240, 196, .35);
 	font-size: 0.8em;
 	opacity: 0;
 	transition: opacity 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -65,9 +65,9 @@
 }
 
 .listItem__name {
-	font-size: 100%;
+	font-size: 150%;
 	font-weight: 600;
-	color: #FFF;
+	color: #003A6F;
 	padding-top: 2em;
 	margin-bottom: 0.3em;
 }
@@ -81,7 +81,7 @@
 }
 
 .listItem__favorite .icon {
-	color: #dd4997;
+	color: #fc5050;
 }
 
 .listItem__iconblock {
