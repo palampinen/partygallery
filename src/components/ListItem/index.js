@@ -7,7 +7,7 @@ import './list-item.css';
 class ListItem extends Component {
 
   formatItemTitle(title) {
-    return title === 'SYSTEM' ? 'Whappu' : title;
+    return title === 'SYSTEM' ? 'Admin' : title;
   }
   render() {
 
@@ -25,7 +25,6 @@ class ListItem extends Component {
         </div>
         <div className="listItem__info">
           <span className="listItem__name">{this.formatItemTitle(item.getIn(['author','name']))}</span>
-          <span className="listItem__team">{item.getIn(['author','team'])}</span>
           <span className="listItem__iconblock listItem__favorite">
             <i className="ion-android-favorite icon" />
             {item.get('votes')}
