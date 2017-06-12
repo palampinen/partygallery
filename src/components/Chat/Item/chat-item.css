@@ -1,0 +1,143 @@
+@keyframes fade-in {
+	from {opacity: 0}
+	to {opacity: 0}
+}
+
+.chatItem {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin: 30px auto;
+	overflow: hidden;
+	text-align: center;
+}
+
+.chatItem:active {
+	background-color: #fafafa;
+}
+
+.chatItem--odd {
+	justify-content: flex-start;
+	flex-direction: row-reverse;
+}
+.chatItem--odd .chatItem__avatar {
+	justify-content: flex-end;
+}
+
+.chatItem__avatar {
+	width: 80px;
+	padding: 20px 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.chatItem__avatar__img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.chatItem__text {
+	max-width: 50%;
+	padding: 30px;
+	border-radius: 30px;
+	background: #ECF1F7;
+	color: rgba(0,0,0,.5);
+	font-size: 0.8em;
+	line-height: 2;
+	text-align: left;
+}
+
+
+.chatItem__image {
+	display: block;
+	overflow: hidden;
+	position: relative;
+
+	margin: 0;
+	border-radius: 30px;
+
+	width: 500px;
+	height: 500px;
+	cursor: pointer;
+}
+
+.chatItem__image .img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-color: #efe8ec;
+	border-radius: 0px;
+	animation: fade-in 0.15s;
+}
+
+.chatItem__info {
+	border-radius: 0px;
+	flex-direction: column;
+	display: flex;
+	position: absolute;
+	border-radius: 30px;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	color: #003A6F;
+	align-items: center;
+	justify-content: center;
+	background: rgba(253, 240, 196, .3);
+	font-size: 0.8em;
+	opacity: 0;
+	transition: opacity 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+	cursor: pointer;
+}
+.chatItem:hover .chatItem__info {
+	opacity: 1;
+}
+
+.chatItem__name {
+	font-size: 150%;
+	font-weight: 600;
+	color: #003A6F;
+	padding-top: 2em;
+	margin-bottom: 0.3em;
+}
+.chatItem__team {
+	margin-bottom: 1.5em;
+}
+
+.chatItem__favorite {
+	margin-bottom: 1.5em;
+	font-size: 1.4em;
+}
+
+.chatItem__favorite .icon {
+	color: #fc5050;
+}
+
+.chatItem__iconblock {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon {
+	margin-right: 5px;
+	font-size: 1.2em;
+}
+
+
+
+@media screen and (max-width: 1150px) {
+
+}
