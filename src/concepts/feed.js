@@ -41,17 +41,16 @@ export const selectItem = item => ({ type: SELECT_ITEM, payload: item });
 export const closeItem = item => ({ type: SELECT_ITEM, payload: null });
 
 const getFeedParams = (state) => {
-  const cityId = getCityId(state);
   const sort = getFeedSortType(state);
 
-  return { sort, cityId, limit: 100 };
+  return { sort, limit: 100 };
 }
 
 export const fetchFeed = () => (dispatch, getState) => {
   dispatch({ type: GET_FEED_REQUEST });
 
   const state = getState();
-  const initialFetchParams = Object.assign(getFeedParams(state), { limit: 40 });
+  const initialFetchParams = Object.assign(getFeedParams(state), { limit: 100 });
 
   api.fetchModels('feed', initialFetchParams)
   .then(items => {
